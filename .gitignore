@@ -5,4 +5,5 @@ Documents/Part1.docx
 Documents/ScienceDirect Articles.zip
 *.ipynb
 .ipynb_checkpoints
+stanford-corenlp-full
 

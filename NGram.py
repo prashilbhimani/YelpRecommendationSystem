@@ -27,7 +27,7 @@ def filteredWords(text):
     return text
 
 
-# In[20]:
+# In[4]:
 
 def getNGram(text,n,polarity):
     key_words=[]
@@ -65,12 +65,11 @@ def getAdjectives(text):
     return adjectives                 
 
 
-# In[ ]:
+# In[10]:
 
-import re
-j=0
 all_key_words={}
-for b in business.keys():
+business_keys=list(business.keys())
+for b in business_keys[0:10]:
     all_key_words[b]={}
     for r in business[b]:
         #print(r)
@@ -89,7 +88,7 @@ for b in business.keys():
             #print("adjectives ",end="")
             #print(adjectives)
 
-            one_grams=getNGram(filteredWords(text1),1,polarity)
+            #one_grams=getNGram(filteredWords(text1),1,polarity)
             two_grams=getNGram(filteredWords(text1),2,polarity)
             #print(two_grams)
             
@@ -115,12 +114,17 @@ for b in business.keys():
     #print(" ")
     print(len(all_key_words[b]), end=" ")
     print(len(business[b]))
+    with open("Dataset/JSON_Dataset/az_business_tags.json","a") as outfile:
+        temp={}
+        temp['business_id']=b
+        temp['tags']=all_key_words[b]
+        json.dump(temp,outfile)
+        outfile.write("\n")
 
 
-# In[ ]:
+# In[11]:
 
-for b in all_key_words:
-    print(len(all_key_words[b]))
+len(business_keys)
 
 
 # In[ ]:
